@@ -1,0 +1,5 @@
+packages
+*.so
+.directory
+*.lock
+ 
