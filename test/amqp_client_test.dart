@@ -5,7 +5,7 @@ void main() {
   
  Connection myConnection = new Connection();
  
- bool result = myConnection.open("localhost");
+ bool result = myConnection.openHost("localhost");
  
  print("Open status = $result");
  
@@ -17,6 +17,16 @@ void main() {
  
  open = myConnection.isOpen();
  
- print("isOpen closed status = $open");
+ result = myConnection.openUrl("qpid:@tcp:localhost");
+ 
+ open = myConnection.isOpen();
+ 
+ print("isOpen url status = $open");
+ 
+  myConnection.close();
+ 
+ open = myConnection.isOpen();
+ 
+ print("isOpen url status = $open");
  
 }
