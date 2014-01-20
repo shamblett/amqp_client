@@ -1,11 +1,42 @@
 
-import '../lib/amqp_client.dart';
 
-void main() {
+library amqp_client__test;
+
+import '../lib/amqp_client.dart';
+import 'package:unittest/unittest.dart';  
+
+main() {  
   
- Connection myConnection = new Connection();
- 
- bool result = myConnection.openHost("localhost");
+  
+  /* Tests */
+  
+  /* Group 1 - Connection Tests */
+  group("1. Connection Tests - ", () {
+    
+    test("Open Host", () {  
+      
+      Connection myConnection = new Connection();
+      bool result = myConnection.openHost("localhost");
+      expect(result, isTrue);
+      expect(myConnection.isOpen(), isTrue);
+      myConnection.close();
+      
+    });
+    
+    test("Close Host", () {  
+      
+      Connection myConnection = new Connection();
+      bool result = myConnection.openHost("localhost");
+      expect(result, isTrue);
+      myConnection.close();
+      expect(myConnection.isOpen(), isFalse);
+      
+      
+    });
+    
+  });
+  
+ /*bool result = myConnection.openHost("localhost");
  
  print("Open status = $result");
  
@@ -27,6 +58,6 @@ void main() {
  
  open = myConnection.isOpen();
  
- print("isOpen url status = $open");
+ print("isOpen url status = $open");*/
  
 }
