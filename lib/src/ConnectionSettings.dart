@@ -38,9 +38,9 @@ class ConnectionSettings {
      * Allows an AMQP 'virtual host' to be specified for the
      * connection.
      */
-    String _virtualhost;
-    String get virtualhost => _virtualhost;
-    set virtualhost(String name) => _virtualhost = name;
+    String _virtualHost;
+    String get virtualHost => _virtualHost;
+    set virtualHost(String name) => _virtualHost = name;
 
     /**
      * The username to use when authenticating the connection. If not

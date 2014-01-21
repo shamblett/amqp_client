@@ -75,6 +75,21 @@ class Connection {
             String virtualhost = "/", 
             int maxFrameSize=65535]) native "Connection::openUrl";
   
+  
+  /**
+   * Opens a connection to a broker using a URL.
+   * If the URL contains multiple addresses, try each in turn
+   * till connection is successful.
+  *
+   * @url address of the broker to connect to.
+  *
+   * @param settings used for any settings not provided by the URL.
+   * Settings provided by the url (excepting host and port) are ignored in
+   * the settings.
+   */
+  bool openUrlSettings(String url, 
+                       ConnectionSettings settings)  native "Connection::openUrlSettings";
+  
   /**
    * Is the connection open
    */
