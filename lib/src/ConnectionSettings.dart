@@ -141,5 +141,33 @@ class ConnectionSettings {
     String get sslCertName => _sslCertName;
     set sslCertName(String name) => _sslCertName = name;
 
-    
+    /**
+     * == operator, must have exact match for equality
+     */
+    bool operator==(other) {
+      
+      if (other is! ConnectionSettings) return false;
+      
+      if ( protocol != other.protocol ) return false;
+      if ( host != other.host ) return false;
+      if ( port != other.port ) return false;
+      if ( virtualHost != other.virtualHost ) return false;
+      if ( username != other.username ) return false;
+      if ( password != other.password ) return false;
+      if ( mechanism != other.mechanism ) return false;
+      if ( locale != other.locale ) return false;
+      if ( heartbeat != other.heartbeat ) return false;
+      if ( maxChannels != other.maxChannels) return false;
+      if ( maxFrameSize != other.maxFrameSize ) return false;
+      if ( bounds != other.bounds ) return false;
+      if ( tcpNoDelay != other.tcpNoDelay ) return false;
+      if ( service != other.service ) return false;
+      if ( minSsf != other.minSsf ) return false;
+      if ( maxSsf != other.maxSsf ) return false;
+      if ( sslCertName != other.sslCertName ) return false;
+      
+      return true;
+      
+      
+    }
 }

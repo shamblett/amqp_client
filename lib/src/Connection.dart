@@ -104,4 +104,9 @@ class Connection {
    */
   bool close() native "Connection::close";
   
+  /**
+   * Return the set of client negotiated settings
+   */
+  ConnectionSettings getNegotiatedSettings() native "Connection::getNegotiatedSettings";
+  
 }
