@@ -9,5 +9,7 @@ library amqp_client;
 
 import 'dart-ext:so/amqp_extension';
 
-part 'src/Connection.dart';
-part 'src/ConnectionSettings.dart';
+part 'src/AmqpcConnection.dart';
+part 'src/AmqpcConnectionSettings.dart';
+part 'src/AmqpcException.dart';
+part 'src/AmqpcSession.dart';

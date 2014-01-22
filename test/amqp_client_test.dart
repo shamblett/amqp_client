@@ -11,7 +11,7 @@ main() {
   /* Tests */
   
   /* Edit per your platform, these are Qpid defaults */
-  ConnectionSettings testSettings = new ConnectionSettings();
+  AmqpcConnectionSettings testSettings = new AmqpcConnectionSettings();
   testSettings.bounds = 2;
   testSettings.heartbeat = 0;
   testSettings.locale = "en_US";
@@ -32,7 +32,7 @@ main() {
     
     test("Open Host", () {  
       
-      Connection myConnection = new Connection();
+      AmqpcConnection myConnection = new AmqpcConnection();
       bool result = myConnection.openHost("localhost");
       expect(result, isTrue);
       expect(myConnection.isOpen(), isTrue);
@@ -42,7 +42,7 @@ main() {
     
     test("Close Host", () {  
       
-      Connection myConnection = new Connection();
+      AmqpcConnection myConnection = new AmqpcConnection();
       bool result = myConnection.openHost("localhost");
       expect(result, isTrue);
       myConnection.close();
@@ -53,7 +53,7 @@ main() {
     
     test("Open Url", () {  
       
-      Connection myConnection = new Connection();
+      AmqpcConnection myConnection = new AmqpcConnection();
       bool result = myConnection.openUrl("qpid:@tcp:localhost");
       expect(result, isTrue);
       expect(myConnection.isOpen(), isTrue);
@@ -63,7 +63,7 @@ main() {
     
     test("Close Url", () {  
       
-      Connection myConnection = new Connection();
+      AmqpcConnection myConnection = new AmqpcConnection();
       bool result = myConnection.openUrl("qpid:@tcp:localhost");
       expect(result, isTrue);
       myConnection.close();
@@ -75,8 +75,8 @@ main() {
     
     test("Multiple Connections", () {  
       
-      Connection myConnection1 = new Connection();
-      Connection myConnection2 = new Connection();
+      AmqpcConnection myConnection1 = new AmqpcConnection();
+      AmqpcConnection myConnection2 = new AmqpcConnection();
       bool result = myConnection1.openUrl("qpid:@tcp:localhost");
       expect(result, isTrue);
       result = myConnection2.openUrl("qpid:@tcp:localhost");
@@ -89,19 +89,48 @@ main() {
       
     });
     
-    solo_test("Open Url Settings", () {  
+    test("Open Url Settings", () {  
       
-      Connection myConnection = new Connection();
+      AmqpcConnection myConnection = new AmqpcConnection();
       testSettings.virtualHost = "fred";
       bool result = myConnection.openUrlSettings("qpid:@tcp:localhost",
                                                  testSettings);
       expect(result, isTrue);
       expect(myConnection.isOpen(), isTrue);
-      ConnectionSettings reSettings = myConnection.getNegotiatedSettings();
+      AmqpcConnectionSettings reSettings = myConnection.getNegotiatedSettings();
       expect(reSettings.virtualHost, "fred");
       bool equals = false;
       if ( testSettings == reSettings ) equals = true; 
       expect(equals, isTrue);
+      myConnection.close();
+      
+    });
+    
+    test("Open Settings", () {  
+      
+      AmqpcConnection myConnection = new AmqpcConnection();
+      testSettings.virtualHost = "fred";
+      testSettings.heartbeat = 5;
+      testSettings.host = "localhost";
+      bool result = myConnection.openSettings(testSettings);
+      expect(result, isTrue);
+      expect(myConnection.isOpen(), isTrue);
+      AmqpcConnectionSettings reSettings = myConnection.getNegotiatedSettings();
+      bool equals = false;
+      if ( testSettings == reSettings ) equals = true; 
+      expect(equals, isTrue);
+      myConnection.close();
+      
+    });
+    
+    solo_test("Get Session", () {  
+      
+      AmqpcConnection myConnection = new AmqpcConnection();
+      bool result = myConnection.openHost("localhost");
+      expect(result, isTrue);
+      expect(myConnection.isOpen(), isTrue);
+      AmqpcSession mySession = myConnection.newSession("SJH",0);
+      mySession.me();
       myConnection.close();
       
     });

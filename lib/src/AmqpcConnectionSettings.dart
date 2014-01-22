@@ -9,9 +9,9 @@
 
 part of amqp_client;
 
-class ConnectionSettings {
+class AmqpcConnectionSettings {
 
-    ConnectionSettings();
+    AmqpcConnectionSettings();
 
     /**
      * The protocol used for the connection (defaults to 'tcp')
@@ -146,7 +146,7 @@ class ConnectionSettings {
      */
     bool operator==(other) {
       
-      if (other is! ConnectionSettings) return false;
+      if (other is! AmqpcConnectionSettings) return false;
       
       if ( protocol != other.protocol ) return false;
       if ( host != other.host ) return false;
