@@ -26,7 +26,7 @@ class AmqpcSession {
    */
   AmqpcSession._nativeConstructor() {}
   
-  void executionSync(bool sync) native "Session::sessionExecutionSync";
+  void executionSync({bool sync:true}) native "Session::sessionExecutionSync";
       
       
 }

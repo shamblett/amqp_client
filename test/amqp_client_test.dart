@@ -135,7 +135,7 @@ main() {
       
     });
     
-    solo_test("Resume Session", () {  
+    test("Resume Session", () {  
       
       AmqpcConnection myConnection = new AmqpcConnection();
       bool result = myConnection.openHost("localhost");
@@ -145,6 +145,23 @@ main() {
       myConnection.resume(mySession);
       myConnection.close();
      
+      
+    });
+    
+  });
+  
+  /* Group 2 - Session Tests */
+  group("2. Session Tests - ", () {
+    
+    solo_test("Execution Sync", () {  
+      
+      AmqpcConnection myConnection = new AmqpcConnection();
+      bool result = myConnection.openHost("localhost");
+      expect(result, isTrue);
+      expect(myConnection.isOpen(), isTrue);
+      AmqpcSession mySession = myConnection.newSession("SJH",0);
+      mySession.executionSync(sync:true);   
+      myConnection.close();
       
     });
     
