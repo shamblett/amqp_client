@@ -144,6 +144,7 @@ main() {
       AmqpcSession mySession = myConnection.newSession("SJH",0);
       myConnection.resume(mySession);
       myConnection.close();
+     
       
     });
     
