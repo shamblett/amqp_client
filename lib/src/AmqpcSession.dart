@@ -12,8 +12,7 @@ part of amqp_client;
 
 class AmqpcSession {
   
-      void me() {
-        
-        print("I am a session");
-      }
+  void executionSync(bool sync) native "Session::sessionExecutionSync";
+      
+      
 }

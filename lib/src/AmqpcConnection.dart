@@ -136,4 +136,10 @@ class AmqpcConnection {
   AmqpcSession newSession(String name,
                           [int timeoutSeconds = 0]) native "Connection::connectionNewSession";
   
+  /**
+   * Resume a suspended session. A session may be resumed
+   * on a different connection to the one that created it.
+   */
+   bool resume(AmqpcSession session) native "Connection::connectionResume";
+  
 }

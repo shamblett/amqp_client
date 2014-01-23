@@ -123,14 +123,26 @@ main() {
       
     });
     
-    solo_test("Get Session", () {  
+    test("Get Session", () {  
       
       AmqpcConnection myConnection = new AmqpcConnection();
       bool result = myConnection.openHost("localhost");
       expect(result, isTrue);
       expect(myConnection.isOpen(), isTrue);
       AmqpcSession mySession = myConnection.newSession("SJH",0);
-      mySession.me();
+      myConnection.resume(mySession);
+      myConnection.close();
+      
+    });
+    
+    solo_test("Resume Session", () {  
+      
+      AmqpcConnection myConnection = new AmqpcConnection();
+      bool result = myConnection.openHost("localhost");
+      expect(result, isTrue);
+      expect(myConnection.isOpen(), isTrue);
+      AmqpcSession mySession = myConnection.newSession("SJH",0);
+      myConnection.resume(mySession);
       myConnection.close();
       
     });
