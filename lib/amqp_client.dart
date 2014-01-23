@@ -13,3 +13,8 @@ part 'src/AmqpcConnection.dart';
 part 'src/AmqpcConnectionSettings.dart';
 part 'src/AmqpcException.dart';
 part 'src/AmqpcSession.dart';
+part 'src/AmqpcMessage.dart';
+part 'src/AmqpcMessageProperties.dart';
+part 'src/AmqpcDeliveryProperties.dart';
+part 'src/AmqpcFieldTable.dart';
+part 'src/AmqpcSequenceNumber.dart';

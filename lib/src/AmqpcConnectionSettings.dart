@@ -1,5 +1,5 @@
 /*
- * Package : xml2json
+ * Package : amqp_client
  * Author : S. Hamblett <steve.hamblett@linux.com>
  * Date   : 12/09/2013
  * Copyright :  S.Hamblett@OSCF
@@ -84,7 +84,7 @@ class AmqpcConnectionSettings {
      * use on this connection.
      */
     int _maxChannels;
-    int get maxChannels => _maxChannels;
+    int get maxChannels => _maxChannels;bool hasMessageProperties()
     set maxChannels(int max) => _maxChannels = max;
     
     /**
