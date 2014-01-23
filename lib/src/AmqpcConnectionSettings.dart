@@ -84,7 +84,7 @@ class AmqpcConnectionSettings {
      * use on this connection.
      */
     int _maxChannels;
-    int get maxChannels => _maxChannels;bool hasMessageProperties()
+    int get maxChannels => _maxChannels;
     set maxChannels(int max) => _maxChannels = max;
     
     /**

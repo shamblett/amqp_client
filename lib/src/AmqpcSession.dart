@@ -42,17 +42,17 @@ class AmqpcSession {
                          String resumeId:null,
                          int resumeTtl:0,
                          AmqpcFieldTable arguments:null,
-                         bool sync:true) native "Session::sessionMessageSubscribe";
+                         bool sync:true}) native "Session::sessionMessageSubscribe";
   
   void messageCancel({String destination:null,
-                      bool sync:true) native "Session::sessionMessageCancel";
+                      bool sync:true}) native "Session::sessionMessageCancel";
   
   
   void messageFlush({String destination:null,
-                     bool sync:true) native "Session::sessionMessageFlush";
+                     bool sync:true}) native "Session::sessionMessageFlush";
   
   void messageStop({String destination:null,
-                    bool sync:true) native "Session::sessionMessageStop";
+                    bool sync:true}) native "Session::sessionMessageStop";
   
   void txCommit({bool sync:true}) native "Session::sessionTxCommit";
   

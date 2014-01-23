@@ -150,10 +150,22 @@ main() {
     
   });
   
-  /* Group 2 - Session Tests */
-  group("2. Session Tests - ", () {
+  /* Group 2 - Message Tests */
+  group("2. Message Tests - ", () {
     
-    solo_test("Execution Sync", () {  
+    solo_test("Construction", () {  
+      
+      AmqpcMessage myMessage = new AmqpcMessage("This is the message body",
+                                                "SJH");
+      
+    });
+    
+  });
+  
+  /* Group 3 - Session Tests */
+  group("3. Session Tests - ", () {
+    
+    test("Execution Sync", () {  
       
       AmqpcConnection myConnection = new AmqpcConnection();
       bool result = myConnection.openHost("localhost");

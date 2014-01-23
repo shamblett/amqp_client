@@ -13,6 +13,7 @@ part of amqp_client;
 class AmqpcMessage {
   
   String _data;
+  
   String _routingKey;
   
   /**
