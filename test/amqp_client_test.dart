@@ -150,8 +150,57 @@ main() {
     
   });
   
-  /* Group 2 - Message Tests */
-  group("2. Message Tests - ", () {
+  /* Group 2 - Uuid Tests */
+  group("2. Uuid Tests - ", () {
+    
+    test("Construction", () {  
+              
+        AmqpcUuid myUuid = new AmqpcUuid(true);
+                                         
+        expect(myUuid, isNotNull);
+      
+    });
+    
+    test("Generate", () {  
+              
+        AmqpcUuid myUuid = new AmqpcUuid(true);
+        myUuid.generate();
+        expect(myUuid.toString().length,36);
+        print(myUuid);
+      
+    });
+    
+    test("Clear", () {  
+              
+        AmqpcUuid myUuid = new AmqpcUuid(true);
+        myUuid.generate();
+        expect(myUuid.toString().length,36);
+        print(myUuid);
+        myUuid.clear();
+        expect(myUuid.toString(), "00000000-0000-0000-0000-000000000000");
+        print(myUuid);
+      
+    });
+    
+    test("Is Null", () {  
+              
+        AmqpcUuid myUuid = new AmqpcUuid(true);
+        myUuid.generate();
+        expect(myUuid.toString().length,36);
+        print(myUuid);
+        myUuid.clear();
+        expect(myUuid.toString(), "00000000-0000-0000-0000-000000000000");
+        expect(myUuid.isNull(), isTrue);
+      
+    });
+    
+    
+    
+    
+  });
+  
+  /* Group 3 - Message Tests */
+  group("3. Message Tests - ", () {
     
     test("Construction", () {  
       
@@ -223,8 +272,8 @@ main() {
     
   });
   
-  /* Group 3 - Session Tests */
-  group("3. Session Tests - ", () {
+  /* Group 4 - Session Tests */
+  group("4. Session Tests - ", () {
     
     test("Construction ", () {
       

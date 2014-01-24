@@ -12,4 +12,5 @@ part of amqp_client;
 class AmqpcMessageProperties{
   
   
+  
 }
