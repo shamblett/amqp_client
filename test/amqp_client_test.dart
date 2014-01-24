@@ -153,17 +153,59 @@ main() {
   /* Group 2 - Message Tests */
   group("2. Message Tests - ", () {
     
-    solo_test("Construction", () {  
+    test("Construction", () {  
+      
+             
+        AmqpcMessage myMessage = new AmqpcMessage("This is the message body",
+                                                "SJH");
+        expect(myMessage, isNotNull);
+      
+    });
+    
+    test("Equality", () {  
       
       AmqpcMessage myMessage = new AmqpcMessage("This is the message body",
                                                 "SJH");
+      bool equal = false;
+      if ( myMessage == myMessage ) equal = true;
+      expect(equal, isTrue);
+      
+      AmqpcMessage myOtherMessage = new AmqpcMessage("This is the message body again",
+                                                     "SJH1");
+      equal = false;
+      if ( myMessage == myOtherMessage ) equal = true;
+      expect(equal, isFalse);
       
     });
+    
+    test("Get Data", () {  
+      
+      AmqpcMessage myMessage = new AmqpcMessage("This is the message body",
+                                                "SJH");
+      String body = myMessage.getData();
+      expect(body, "This is the message body");
+      
+    });
+    
+    
     
   });
   
   /* Group 3 - Session Tests */
   group("3. Session Tests - ", () {
+    
+    test("Construction ", () {
+      
+    void wrapper() {
+      
+      AmqpcSession mySession = new AmqpcSession();
+      
+    }
+    
+    expect(wrapper, throws);
+      
+      
+    });
     
     test("Execution Sync", () {  
       

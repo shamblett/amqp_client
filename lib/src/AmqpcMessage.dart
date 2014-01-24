@@ -12,8 +12,12 @@ part of amqp_client;
 
 class AmqpcMessage {
   
+  /**
+   * Used only for construction.
+   * 
+   * Use get/setData meethods to get the message body 
+   */
   String _data;
-  
   String _routingKey;
   
   /**
