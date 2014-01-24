@@ -187,13 +187,37 @@ main() {
       
     });
     
-    solo_test("Get Data", () {  
+    test("Set Data", () {  
       
       AmqpcMessage myMessage = new AmqpcMessage("This is the message body",
                                                 "SJH");
       myMessage.setData("The New Body");
       String body = myMessage.getData();
       expect(body, "The New Body");
+      
+    });
+    
+    test("Swap", () {  
+      
+      AmqpcMessage mySwap1 = new AmqpcMessage("This is mySwap1",
+                                              "SJH");
+      AmqpcMessage mySwap2 = new AmqpcMessage("This is mySwap2",
+                                               "SJH");
+      mySwap1.swap(mySwap2);
+      String bodySwap1 = mySwap1.getData();
+      String bodySwap2 = mySwap2.getData();
+      expect(bodySwap1, "This is mySwap2");
+      expect(bodySwap2, "This is mySwap1");
+      
+    });
+    
+    test("Append Data", () {  
+      
+      AmqpcMessage myMessage = new AmqpcMessage("This is the message body",
+                                                "SJH");
+      myMessage.appendData(" Appended");
+      String body = myMessage.getData();
+      expect(body, "This is the message body Appended");
       
     });
     

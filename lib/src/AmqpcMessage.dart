@@ -37,13 +37,13 @@ class AmqpcMessage {
   
   bool operator==(other) native "Message::messageEquals";
   
-  void swap(Message message) native "Message::messageSwap";
+  void swap(AmqpcMessage message) native "Message::messageSwap";
   
   void setData(String data) native "Message::messageSetData";
   
   String getData() native "Message::messageGetData";
   
-  void appendData(String data) native "Message::Message";
+  void appendData(String data) native "Message::MessageAppendData";
   
   bool hasMessageProperties() native "Message::messageHasMessageProperties";
   
