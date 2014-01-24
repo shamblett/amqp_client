@@ -187,7 +187,15 @@ main() {
       
     });
     
-    
+    solo_test("Get Data", () {  
+      
+      AmqpcMessage myMessage = new AmqpcMessage("This is the message body",
+                                                "SJH");
+      myMessage.setData("The New Body");
+      String body = myMessage.getData();
+      expect(body, "The New Body");
+      
+    });
     
   });
   
