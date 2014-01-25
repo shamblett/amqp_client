@@ -59,7 +59,7 @@ class AmqpcMessage {
   
   /** The destination of messages sent to the broker is the exchange
    * name.  The destination of messages received from the broker is
-   * the delivery tag identifyig the local subscription (often this
+   * the delivery tag identifying the local subscription (often this
    * is the name of the subscribed queue.)
    */
   String getDestination() native "Message::messageGetDestination";

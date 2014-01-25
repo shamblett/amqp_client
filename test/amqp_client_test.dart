@@ -270,6 +270,17 @@ main() {
       
     });
     
+    solo_test("Message Properties", () {  
+      
+      AmqpcMessage myMessage = new AmqpcMessage("This is the message body",
+                                                "SJH");
+      bool hasProperties = myMessage.hasMessageProperties();
+      expect(hasProperties, isTrue);
+      bool hasDeliveryProperties = myMessage.hasDeliveryProperties();
+      expect(hasDeliveryProperties, isTrue);
+      
+    });
+    
   });
   
   /* Group 4 - Session Tests */
