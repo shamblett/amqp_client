@@ -13,11 +13,15 @@ part of amqp_client;
 class AmqpcMessage {
   
   /**
-   * Used only for construction.
-   * 
-   * Use get/setData meethods to get the message body 
+   * Message body
    */
   String _data;
+  String get data => _getData();
+  set data(String message) => _setData(message);
+  
+  /**
+   * Construction only
+   */
   String _routingKey;
   
   /**
@@ -39,9 +43,9 @@ class AmqpcMessage {
   
   void swap(AmqpcMessage message) native "Message::messageSwap";
   
-  void setData(String data) native "Message::messageSetData";
+  void _setData(String data) native "Message::messageSetData";
   
-  String getData() native "Message::messageGetData";
+  String _getData() native "Message::messageGetData";
   
   void appendData(String data) native "Message::MessageAppendData";
   

@@ -231,7 +231,7 @@ main() {
       
       AmqpcMessage myMessage = new AmqpcMessage("This is the message body",
                                                 "SJH");
-      String body = myMessage.getData();
+      String body = myMessage.data;
       expect(body, "This is the message body");
       
     });
@@ -240,8 +240,8 @@ main() {
       
       AmqpcMessage myMessage = new AmqpcMessage("This is the message body",
                                                 "SJH");
-      myMessage.setData("The New Body");
-      String body = myMessage.getData();
+      myMessage.data = "The New Body";
+      String body = myMessage.data;
       expect(body, "The New Body");
       
     });
@@ -253,8 +253,8 @@ main() {
       AmqpcMessage mySwap2 = new AmqpcMessage("This is mySwap2",
                                                "SJH");
       mySwap1.swap(mySwap2);
-      String bodySwap1 = mySwap1.getData();
-      String bodySwap2 = mySwap2.getData();
+      String bodySwap1 = mySwap1.data;
+      String bodySwap2 = mySwap2.data;
       expect(bodySwap1, "This is mySwap2");
       expect(bodySwap2, "This is mySwap1");
       
@@ -265,7 +265,7 @@ main() {
       AmqpcMessage myMessage = new AmqpcMessage("This is the message body",
                                                 "SJH");
       myMessage.appendData(" Appended");
-      String body = myMessage.getData();
+      String body = myMessage.data;
       expect(body, "This is the message body Appended");
       
     });
