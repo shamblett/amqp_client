@@ -16,11 +16,19 @@ class AmqpcUuid{
    */
   bool _unique = true;
   
-  AmqpcUuid(this._unique) {
+  /**
+   * Construction
+   */
+  AmqpcUuid([this._unique]) {
     
     _newUuid();
     
   }
+  
+  /**
+   * Native constructor, hidden in Dart
+   */
+  AmqpcUuid._nativeConstructor() {}
   
   /**
    * Construction function for the native extension

@@ -278,6 +278,8 @@ main() {
       expect(hasProperties, isTrue);
       bool hasDeliveryProperties = myMessage.hasDeliveryProperties();
       expect(hasDeliveryProperties, isTrue);
+      AmqpcMessageProperties properties = myMessage.getMessageProperties();
+      expect(properties, isNull);
       
     });
     

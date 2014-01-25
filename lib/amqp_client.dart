@@ -17,7 +17,6 @@ part 'src/AmqpcSession.dart';
 part 'src/AmqpcMessage.dart';
 part 'src/AmqpcMessageProperties.dart';
 part 'src/AmqpcDeliveryProperties.dart';
-part 'src/AmqpcFieldTable.dart';
 part 'src/AmqpcSequenceNumber.dart';
 part 'src/AmqpcUuid.dart';
 part 'src/AmqpcReplyTo.dart';

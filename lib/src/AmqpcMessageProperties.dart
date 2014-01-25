@@ -22,7 +22,7 @@ class AmqpcMessageProperties{
    * Message Identifier
    */
   AmqpcUuid _messageId;
-  AmqpcUuid get messageid => _messageId;
+  AmqpcUuid get messageId => _messageId;
   set messageId(AmqpcUuid id) => _messageId = id;
   
   /**
@@ -32,8 +32,10 @@ class AmqpcMessageProperties{
   String get correlationId => _correlationId;
   set correlationId(String id) {
     
-    if (_correlationId.length >= 65536) throw new AmqpcException("Value for correlationId is too large");
     _correlationId = id;
+    if ( _correlationId != null) {
+      if (_correlationId.length >= 65536) throw new AmqpcException("Value for correlationId is too large");
+    }
   }
   
   AmqpcReplyTo _replyTo;
@@ -47,8 +49,11 @@ class AmqpcMessageProperties{
   get contentType => _contentType;
   set contentType(String type) {
     
-    if (_contentType.length >= 256) throw new AmqpcException("Value for contentType is too large");
     _contentType = type;
+    if ( _contentType != null ) {
+      if (_contentType.length >= 256) throw new AmqpcException("Value for contentType is too large");
+    }
+      
   }
   
   /**
@@ -58,10 +63,13 @@ class AmqpcMessageProperties{
   String get contentEncoding => _contentEncoding;
   set contentEncoding(String encoding) {
     
-    if (_contentEncoding.length >= 256) throw new AmqpcException("Value for contentEncoding is too large");
     _contentEncoding = encoding;
+    if ( _contentEncoding != null ) {
+      if (_contentEncoding.length >= 256) throw new AmqpcException("Value for contentEncoding is too large");
+    }
     
   }
+  
   /**
    * User Identity
    */
@@ -69,8 +77,11 @@ class AmqpcMessageProperties{
   String get userId => _userId;
   set userId(String id) {
     
-    if (_userId.length >= 65536) throw new AmqpcException("Value for userId is too large");
     _userId = id;
+    if ( _userId != null ) {
+      if (_userId.length >= 65536) throw new AmqpcException("Value for userId is too large");
+    }  
+    
   }
   
   /**
@@ -80,40 +91,10 @@ class AmqpcMessageProperties{
   String get appId => _appId;
   set appId(String id) {
     
-    if (_appId.length >= 65536) throw new AmqpcException("Value for appId is too large");
     _appId = id;
-  }
-  
-  /**
-   * Application Headers
-   */
-  AmqpcFieldTable _applicationHeaders;
-  AmqpcFieldTable get applicationHeaders => _applicationHeaders;
-  set applicationHeaders(AmqpcFieldTable headers) => _applicationHeaders = headers;
-  
-  /**
-   * Flags
-   */
-  ByteData _flags = new ByteData(2);
-  int get flags => _flags.getUint16(0);
-  set flags(int value) => _flags.setUint16(0,value);
-  
-  AmqpcMessageProperties(this._contentLength,
-                         this._messageId,
-                         this._correlationId,
-                         this._replyTo,
-                         this._contentType,
-                         this._contentEncoding,
-                         this._userId,
-                         this._appId,
-                         this._applicationHeaders) {
-    
-    if (_correlationId.length >= 65536) throw new AmqpcException("Value for correlationId is too large");
-    if (_contentType.length >= 256) throw new AmqpcException("Value for contentType is too large");
-    if (_contentEncoding.length >= 256) throw new AmqpcException("Value for contentEncoding is too large");
-    if (_userId.length >= 65536) throw new AmqpcException("Value for userId is too large");
-    if (_appId.length >= 65536) throw new AmqpcException("Value for appId is too large");
-    
+    if ( _appId != null ) {
+      if (_appId.length >= 65536) throw new AmqpcException("Value for appId is too large");
+    }
     
   }
   

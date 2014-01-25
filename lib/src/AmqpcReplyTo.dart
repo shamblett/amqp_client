@@ -18,9 +18,11 @@ class AmqpcReplyTo{
   String get exchange => _exchange;
   set exchange(String value) {
     
-    if (_exchange.length >= 256) throw new AmqpcException("Value for exchange is too large"); 
-    exchange = value;
-    
+    _exchange = value;
+    if ( _exchange != null ) {
+      if (_exchange.length >= 256) throw new AmqpcException("Value for exchange is too large"); 
+    }
+      
   }
   
   /**
@@ -30,24 +32,12 @@ class AmqpcReplyTo{
   String get routingKey => _routingKey; 
   set routingKey(String value) {
     
-    if (_routingKey.length >= 256) throw new AmqpcException("Value for routingKey is too large");
     _routingKey = value;
-    
-  }
-  
-  /**
-   * Flags
-   */
-  ByteData _flags = new ByteData(2);
-  int get flags => _flags.getUint16(0);
-  set flags(int value) => _flags.setUint16(0,value);
-  
-  AmqpcReplyTo(this._exchange,
-               this._routingKey,
-               this._flags) {
-    
-    if (_exchange.length >= 256) throw new AmqpcException("Value for exchange is too large"); 
-    if (_routingKey.length >= 256) throw new AmqpcException("Value for routingKey is too large");
+    if ( _routingKey != null ) {
+      if (_routingKey.length >= 256) throw new AmqpcException("Value for routingKey is too large");
+    }
+   
+   
     
   }
     
