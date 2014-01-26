@@ -20,9 +20,10 @@ class AmqpcMessage {
   set data(String message) => _setData(message);
   
   /**
-   * Construction only
+   * Routing Key set in construction only
    */
   String _routingKey;
+  String get routingKey => _routingKey;
   
   /**
    * Re-Delivered flag
@@ -89,8 +90,6 @@ class AmqpcMessage {
    * Sequence number
    */
   int _getId() native "Message::messageGetId";
-  
-  
   
   
 }
