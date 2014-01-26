@@ -7,7 +7,6 @@
 
 library amqp_client;
 
-import 'dart:typed_data';
 import 'dart-ext:so/amqp_extension';
 
 part 'src/AmqpcConnection.dart';
@@ -17,6 +16,5 @@ part 'src/AmqpcSession.dart';
 part 'src/AmqpcMessage.dart';
 part 'src/AmqpcMessageProperties.dart';
 part 'src/AmqpcDeliveryProperties.dart';
-part 'src/AmqpcSequenceNumber.dart';
 part 'src/AmqpcUuid.dart';
 part 'src/AmqpcReplyTo.dart';

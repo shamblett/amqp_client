@@ -25,6 +25,19 @@ class AmqpcMessage {
   String _routingKey;
   
   /**
+   * Re-Delivered flag
+   */
+  bool _reDelivered = false;
+  bool get reDelivered => _isRedelivered();
+  set reDelivered(bool state) => _setRedelivered(state);
+  
+  /**
+   * Sequence Number
+   */
+  int _sequnceNumber;
+  int get sequenceNumber => _getId();
+  
+  /**
    * Constructor
    */
   AmqpcMessage(this._data,
@@ -66,17 +79,16 @@ class AmqpcMessage {
   
   /** Check the redelivered flag. 
   */
-  bool isRedelivered() native "Message::messageIsRedelivered";
+  bool _isRedelivered() native "Message::messageIsRedelivered";
   
   /** Set the redelivered flag. 
    */
-  void setRedelivered(bool redelivered) native "Message::messageSetRedelivered";
+  void _setRedelivered(bool reDelivered) native "Message::messageSetRedelivered";
   
-  /** Get the message headers. 
-  */
-  AmqpcFieldTable getHeaders() native "Message::messageGetHeaders";
-  
-  AmqpcSequenceNumber getId() native "Message::messagegetId";
+  /**
+   * Sequence number
+   */
+  int _getId() native "Message::messageGetId";
   
   
   

@@ -286,7 +286,7 @@ main() {
       
     });
     
-    solo_test("Delivery Properties", () {  
+    test("Delivery Properties", () {  
       
       AmqpcMessage myMessage = new AmqpcMessage("This is the message body",
                                                 "SJH");
@@ -299,6 +299,47 @@ main() {
       expect(properties.redelivered, isFalse);
       expect(properties.immediate, isFalse);
       expect(properties.routingKey, "SJH");
+      
+    });
+    
+    test("Destination", () {  
+      
+      AmqpcMessage myMessage = new AmqpcMessage("This is the message body",
+                                                "SJH");
+      String destination = myMessage.getDestination();
+      expect(destination, isNotNull);
+      expect(destination, "");
+      
+    });
+    
+    test("Is Redelivered", () {  
+      
+      AmqpcMessage myMessage = new AmqpcMessage("This is the message body",
+                                                "SJH");
+      bool reDelivered = myMessage.reDelivered;
+      expect(reDelivered, isFalse);
+      
+    });
+    
+    test("Set Redelivered", () {  
+      
+      AmqpcMessage myMessage = new AmqpcMessage("This is the message body",
+                                                "SJH");
+      bool reDelivered = myMessage.reDelivered;
+      expect(reDelivered, isFalse);
+      myMessage.reDelivered = true;
+      reDelivered = myMessage.reDelivered;
+      expect(reDelivered, isTrue);
+      
+      
+    });
+    
+    test("Sequence Number", () {  
+      
+      AmqpcMessage myMessage = new AmqpcMessage("This is the message body",
+                                                "SJH");
+      int sequence = myMessage.sequenceNumber;
+      expect(sequence, 0);
       
     });
     
