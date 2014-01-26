@@ -270,7 +270,7 @@ main() {
       
     });
     
-    solo_test("Message Properties", () {  
+    test("Message Properties", () {  
       
       AmqpcMessage myMessage = new AmqpcMessage("This is the message body",
                                                 "SJH");
@@ -283,6 +283,22 @@ main() {
       expect(properties.contentLength, 24);
       expect(properties.messageId.toString(), "00000000-0000-0000-0000-000000000000");
       expect(properties.replyTo.exchange, "");
+      
+    });
+    
+    solo_test("Delivery Properties", () {  
+      
+      AmqpcMessage myMessage = new AmqpcMessage("This is the message body",
+                                                "SJH");
+      bool hasProperties = myMessage.hasMessageProperties();
+      expect(hasProperties, isTrue);
+      bool hasDeliveryProperties = myMessage.hasDeliveryProperties();
+      expect(hasDeliveryProperties, isTrue);
+      AmqpcDeliveryProperties properties = myMessage.getDeliveryProperties();
+      expect(properties, isNotNull);
+      expect(properties.redelivered, isFalse);
+      expect(properties.immediate, isFalse);
+      expect(properties.routingKey, "SJH");
       
     });
     
