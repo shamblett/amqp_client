@@ -466,7 +466,7 @@ main() {
 
     });
      
-    solo_test("Exchange Delete", () {  
+    test("Exchange Delete", () {  
        
        AmqpcConnection myConnection = new AmqpcConnection();
        bool result = myConnection.openHost("localhost");
@@ -477,6 +477,43 @@ main() {
        myConnection.close();
 
      });
+    
+    test("Exchange Bind", () {  
+      
+      AmqpcConnection myConnection = new AmqpcConnection();
+      bool result = myConnection.openHost("localhost");
+      expect(result, isTrue);
+      expect(myConnection.isOpen(), isTrue);
+      AmqpcSession mySession = myConnection.newSession("SJH",0);
+      mySession.exchangeDeclare(exchange:"MyExchange",
+          type:"direct");
+      mySession.exchangeBind(queue:"MyQueue",
+                             exchange:"MyExchange",
+                             bindingKey:"MyKey");
+      mySession.exchangeDelete(exchange:"MyExchange");
+      myConnection.close();
+
+    });
+    
+    solo_test("Exchange Unbind", () {  
+      
+      AmqpcConnection myConnection = new AmqpcConnection();
+      bool result = myConnection.openHost("localhost");
+      expect(result, isTrue);
+      expect(myConnection.isOpen(), isTrue);
+      AmqpcSession mySession = myConnection.newSession("SJH",0);
+      mySession.exchangeDeclare(exchange:"MyExchange",
+          type:"direct");
+      mySession.exchangeBind(queue:"MyQueue",
+                             exchange:"MyExchange",
+                             bindingKey:"MyKey");
+      mySession.exchangeUnbind(queue:"MyQueue",
+          exchange:"MyExchange",
+          bindingKey:"MyKey");
+      mySession.exchangeDelete(exchange:"MyExchange");
+      myConnection.close();
+
+    });
     
   });
   

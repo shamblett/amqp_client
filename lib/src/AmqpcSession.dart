@@ -74,7 +74,7 @@ class AmqpcSession {
   void exchangeUnbind({String queue:"",
                        String exchange:"",
                        String bindingKey:"",
-                       bool sync:true}) native "Session::sessionExchangeBind";
+                       bool sync:true}) native "Session::sessionExchangeUnbind";
   
   
   void queueDeclare({String queue:"",
