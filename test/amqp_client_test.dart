@@ -373,6 +373,22 @@ main() {
       
     });
     
+    test("Message Transfer", () {  
+      
+      AmqpcConnection myConnection = new AmqpcConnection();
+      bool result = myConnection.openHost("localhost");
+      expect(result, isTrue);
+      expect(myConnection.isOpen(), isTrue);
+      AmqpcSession mySession = myConnection.newSession("SJH",0);
+      AmqpcMessage message = new AmqpcMessage("The Message", "SJH");
+      mySession.messageTransfer(destination:"MyExchange",
+                                content:message);
+      AmqpcDeliveryProperties properties = message.getDeliveryProperties();
+      expect(properties.exchange, "");
+      myConnection.close();
+      
+    });
+    
   });
   
 }
