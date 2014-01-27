@@ -53,9 +53,6 @@ class AmqpcSession {
   void messageStop({String destination:null,
                     bool sync:true}) native "Session::sessionMessageStop";
   
-  void txCommit({bool sync:true}) native "Session::sessionTxCommit";
-  
-  void txRollback({bool sync:true}) native "Session::sessionTxRollback";
   
   void exchangeDeclare({String exchange:null,
                         String type:null,
@@ -63,7 +60,6 @@ class AmqpcSession {
                         bool passive:false,
                         bool durable:false,
                         bool autoDelete:false,
-                        AmqpcFieldTable arguments:null,
                         bool sync:true}) native "Session::sessionExchangeDeclare";
   
   void exchangeDelete({String exchange:null,
