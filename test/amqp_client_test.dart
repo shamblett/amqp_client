@@ -389,6 +389,20 @@ main() {
       
     });
     
+    test("Message Subscribe", () {  
+      
+      AmqpcConnection myConnection = new AmqpcConnection();
+      bool result = myConnection.openHost("localhost");
+      expect(result, isTrue);
+      expect(myConnection.isOpen(), isTrue);
+      AmqpcSession mySession = myConnection.newSession("SJH",0);
+      mySession.messageSubscribe(destination:"MyExchange",
+                                 queue:"MyQueue");
+      myConnection.close();
+      
+    });
+
+    
   });
   
 }

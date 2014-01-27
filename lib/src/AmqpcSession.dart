@@ -41,7 +41,6 @@ class AmqpcSession {
                          bool exclusive:false,
                          String resumeId:null,
                          int resumeTtl:0,
-                         AmqpcFieldTable arguments:null,
                          bool sync:true}) native "Session::sessionMessageSubscribe";
   
   void messageCancel({String destination:null,
