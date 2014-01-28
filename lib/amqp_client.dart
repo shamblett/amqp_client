@@ -20,3 +20,6 @@ part 'src/AmqpcUuid.dart';
 part 'src/AmqpcReplyTo.dart';
 part 'src/AmqpcExchangeBoundResult.dart';
 part 'src/AmqpcLocalQueue.dart';
+part 'src/AmqpcSubscription.dart';
+part 'src/AmqpcSubscriptionManager.dart';
+part 'src/AmqpcSubscriptionSettings.dart';

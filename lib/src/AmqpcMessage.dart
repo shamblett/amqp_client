@@ -58,22 +58,49 @@ class AmqpcMessage {
    */
   void _newMessage() native "Message::Message";
   
+  /**
+   * ==
+   */
   bool operator==(other) native "Message::messageEquals";
   
+  /**
+   * Swap
+   */
   void swap(AmqpcMessage message) native "Message::messageSwap";
   
+  /**
+   * Set data method, private
+   */
   void _setData(String data) native "Message::messageSetData";
   
+  /**
+   * get data method, private
+   */
   String _getData() native "Message::messageGetData";
   
+  /**
+   * Append data
+   */
   void appendData(String data) native "Message::MessageAppendData";
   
+  /**
+   * Has Message properties
+   */
   bool hasMessageProperties() native "Message::messageHasMessageProperties";
   
+  /**
+   * Get Message properties
+   */
   AmqpcMessageProperties getMessageProperties() native "Message::messageGetMessageProperties";
   
+  /**
+   * Has Delivery properties
+   */
   bool hasDeliveryProperties() native "Message::messageHasDeliveryProperties";
   
+  /**
+   * Get Delivery properties
+   */
   AmqpcDeliveryProperties getDeliveryProperties() native "Message::messageGetDeliveryProperties";
   
   /** The destination of messages sent to the broker is the exchange

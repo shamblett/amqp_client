@@ -18,12 +18,12 @@ class AmqpcSubscriptionManager {
    * The associated session
    */
   AmqpcSession _session;
-  Amqpcsession get session => _session;
+  AmqpcSession get session => _session;
   
   /**
    * Constructor
    */
-  SubscriptionManager(this.session) {
+  AmqpcSubscriptionManager(this._session) {
     
     _newSubscriptionManager(_session);
     
@@ -32,13 +32,24 @@ class AmqpcSubscriptionManager {
   /**
    *  Private constructor for the native client 
    */
-  SubscriptionManager._newSubscriptionManager(AmqpcSession session) {
+  _newSubscriptionManager(AmqpcSession session) native "SubscriptionManager::Subscriptionmanager";
     
-    
-  }
+  /**
+   * Subscribe a LocalQueue to receive messages from queue.
+   *
+   * Incoming messages are stored in the queue for you to retrieve.
+   *
+   * @param queue Name of the queue to subscribe to.
+   * @param name unique destination name for the subscription, defaults to queue name.
+   * If not specified, the queue name is used.
+     */
+   AmqpcSubscription subscribe(AmqpcLocalQueue localQueue,
+                               String queue,
+                               [String name = ""]) native "SubscriptionManager::subscribe";
+   
+}
   
 
   
   
   
-}
