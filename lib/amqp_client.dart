@@ -18,3 +18,4 @@ part 'src/AmqpcMessageProperties.dart';
 part 'src/AmqpcDeliveryProperties.dart';
 part 'src/AmqpcUuid.dart';
 part 'src/AmqpcReplyTo.dart';
+part 'src/AmqpcExchangeBoundResult.dart';
