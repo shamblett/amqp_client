@@ -49,6 +49,11 @@ class AmqpcMessage {
   }
   
   /**
+   * Dummy native constructor, hidden in Dart
+   */
+  AmqpcMessage._nativeConstructor() {}
+  
+  /**
    * Construction function for the native extension
    */
   void _newMessage() native "Message::Message";

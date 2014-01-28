@@ -345,7 +345,48 @@ main() {
     
   });
   
-  /* Group 4 - Session Tests */
+  /* Group 4 - Local Queue Tests */
+  group("4. Local Queue - ", () {
+    
+    test("Construction", () {  
+              
+        AmqpcLocalQueue myLocalQueue = new AmqpcLocalQueue();
+                                         
+        expect(myLocalQueue, isNotNull);
+      
+    });
+    
+    test("Get", () {  
+              
+        AmqpcLocalQueue myLocalQueue = new AmqpcLocalQueue();                                     
+        expect(myLocalQueue, isNotNull);
+        AmqpcMessage message = myLocalQueue.get();
+        expect(message, isNotNull);
+      
+    });
+    
+    test("Pop", () {  
+              
+        AmqpcLocalQueue myLocalQueue = new AmqpcLocalQueue();                                     
+        expect(myLocalQueue, isNotNull);
+        AmqpcMessage message = myLocalQueue.pop();
+        expect(message, isNotNull);
+      
+    });
+    
+    test("Size", () {  
+              
+        AmqpcLocalQueue myLocalQueue = new AmqpcLocalQueue();                                     
+        expect(myLocalQueue, isNotNull);
+        int size = myLocalQueue.size();
+        expect(size, 0);
+      
+    });
+    
+  });  
+  
+  
+  /* Group 5 - Session Tests */
   group("4. Session Tests - ", () {
     
     test("Construction ", () {
