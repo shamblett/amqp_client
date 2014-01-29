@@ -69,9 +69,24 @@ class AmqpcSubscription {
   AmqpcSession getSession() native "Subscription::subscriptionGetSession";
 
   /** 
+   * Acquire a single message 
+   */
+  void acquire(AmqpcMessage message) native "Subscription::subscriptionAcquire";
+
+  /** 
+   * Accept a single message 
+   */
+  void accept(AmqpcMessage message) native "Subscription::subscriptionAccept";  
+
+  /** 
+   * Release a single message 
+   */
+  void release(AmqpcMessage message) native "Subscription::subscriptionRelease";  
+  
+  /** 
    * Get the subscription manager associated with this subscription 
    */
-  AmqpcSubscriptionManager getSubscriptionManager() native "Subscription::subscriptiongetSubscriptionmanager";;
+  AmqpcSubscriptionManager getSubscriptionManager() native "Subscription::subscriptiongetSubscriptionmanager";
 
   /** 
    * Cancel the subscription. 

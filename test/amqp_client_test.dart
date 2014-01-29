@@ -387,7 +387,7 @@ main() {
   
   
   /* Group 5 - Session Tests */
-  group("4. Session Tests - ", () {
+  group("5. Session Tests - ", () {
     
     test("Construction ", () {
       
@@ -612,6 +612,20 @@ main() {
       myConnection.close();
 
     });
+    
+  });
+  
+  /* Group 6 - Subscription Tests */
+  group("6. Subscription Tests - ", () {
+    
+    test("Construction ", () {
+      
+      AmqpcSubscription mySubscription = new AmqpcSubscription();
+      expect(mySubscription, isNotNull);
+      
+      
+    });
+    
     
   });
   
