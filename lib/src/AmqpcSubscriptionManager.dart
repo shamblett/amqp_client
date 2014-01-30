@@ -30,6 +30,11 @@ class AmqpcSubscriptionManager {
   }
   
   /**
+   * Native class constructor, hidden in Dart
+   */
+  AmqpcSubscriptionManager._nativeConstructor();
+  
+  /**
    *  Private constructor for the native client 
    */
   _newSubscriptionManager(AmqpcSession session) native "SubscriptionManager::Subscriptionmanager";

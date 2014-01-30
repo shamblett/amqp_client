@@ -86,7 +86,7 @@ class AmqpcSubscription {
   /** 
    * Get the subscription manager associated with this subscription 
    */
-  AmqpcSubscriptionManager getSubscriptionManager() native "Subscription::subscriptiongetSubscriptionmanager";
+  AmqpcSubscriptionManager getSubscriptionManager() native "Subscription::subscriptionGetSubscriptionmanager";
 
   /** 
    * Cancel the subscription. 
