@@ -629,5 +629,24 @@ main() {
     
   });
   
+  /* Group 7 - Subscription Manager Tests */
+  group("7. Subscription Manager Tests - ", () {
+    
+    test("Construction ", () {
+      
+      AmqpcConnection myConnection = new AmqpcConnection();
+      bool result = myConnection.openHost("localhost");
+      expect(result, isTrue);
+      expect(myConnection.isOpen(), isTrue);
+      AmqpcSession mySession = myConnection.newSession("SJH",0);
+      AmqpcSubscriptionManager myManager = new AmqpcSubscriptionManager(mySession);
+      expect(myManager, isNotNull);
+      
+      
+    });
+    
+    
+  });
+  
   
 }
