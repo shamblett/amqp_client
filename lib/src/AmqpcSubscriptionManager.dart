@@ -140,6 +140,29 @@ class AmqpcSubscriptionManager {
     */
    void setDefaultSettings(AmqpcSubscriptionSettings settings) native "SubscriptionManager::subscriptionManagerSetDefaultSettings";
    
+   /** 
+    * Get the default settings for subscribe() calls.
+    */
+   AmqpcSubscriptionSettings getDefaultSettings() native "SubscriptionManager::subscriptionManagerGetDefaultSettings";
+   
+   /**
+    * Set the default accept-mode for subscribe() calls. 
+    * The mode parameter is from AmqpcSubscriptionSettings
+    */
+   void setAcceptMode(int mode) native "SubscriptionManager::subscriptionManagerSetAcceptMode";
+
+   /**
+    * Set the default acquire-mode for subscrib() calls.
+    * The mode parameter is from AmqpcSubscriptionSettings
+    */
+   void setAcquireMode(int mode) native "SubscriptionManager::subscriptionManagerSetAcquireMode";
+
+   /**
+    * Get the session 
+    */
+   AmqpcSession Session getSession() native "SubscriptionManager::subscriptionManagerGetSession";
+   
+   
 }
   
 

@@ -56,4 +56,5 @@ class AmqpcSubscriptionSettings {
   bool get exclusive => _exclusive;
   set exclusive(bool state) => _exclusive = state;
   
+  
 }
