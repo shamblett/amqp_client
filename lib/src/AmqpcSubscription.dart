@@ -26,18 +26,19 @@ class AmqpcSubscription {
   String get queue => _getQueue();
   
   /**
-   * Construction
+   * Construction, throws an exception
+   * This class can only be constructed using the methods in AmqpcSubscriptionManager
    */
   AmqpcSubscription() {
     
-    _newSubscription();
+    throw new AmqpcException('You cannot construct a standalone subscription class, see AmqpcSubscriptionManager');
     
   }
-  
+    
   /**
-   * Private native constructor
+   * Native constructor, hidden to Dart
    */
-  void _newSubscription() native "Subscription::Subscription";
+  AmqpcSubscription._nativeConstructor(){}
   
   /** 
    * Get name

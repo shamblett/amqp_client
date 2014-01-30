@@ -8,6 +8,7 @@
 library amqp_client;
 
 import 'dart-ext:so/amqp_extension';
+import 'dart:async';
 
 part 'src/AmqpcConnection.dart';
 part 'src/AmqpcConnectionSettings.dart';

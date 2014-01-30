@@ -32,23 +32,28 @@ class AmqpcSubscriptionSettings {
 
   int _acceptMode = ACCEPT_MODE_EXPLICIT;
   int get acceptMode => _acceptMode;
+  set acceptMode(int mode) => _acceptMode = mode;
   
   int _acquireMode = ACQUIRE_MODE_PRE_ACQUIRED;
   int get acquireMode => _acquireMode;
+  set acquireMode(int mode) => _acquireMode = mode;
   
   /**
    * Auto Acknowledge
    */
   int _autoAck = 1;
   int get autoAck => _autoAck;
+  set autoAck(int state ) => _autoAck = state;
   
   int _completionMode = COMPLETE_ON_DELIVERY;
-  int get completeionMode => _completionMode;
+  int get completionMode => _completionMode;
+  set completionMode(int mode) => _completionMode = mode;
   
   /**
    * Exclusive
    */
   bool _exclusive;
   bool get exclusive => _exclusive;
+  set exclusive(bool state) => _exclusive = state;
   
 }

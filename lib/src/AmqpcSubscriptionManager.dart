@@ -27,6 +27,14 @@ class AmqpcSubscriptionManager {
   AmqpcSession _session;
   AmqpcSession get session => _session;
   
+  final _onMessage = new StreamController<AmqpcMessage>();
+  /**
+   *  Message stream, note that although many queues can be listened to(subscribeListen) all
+   *  messages received are multiplexed into this single stream.
+   *  To get the queue name use the getDestination() method of the message.
+   */
+  get message  => _onMessage.stream;
+  
   /**
    * Constructor
    */
@@ -68,6 +76,15 @@ class AmqpcSubscriptionManager {
     */
    AmqpcSubscription subscribeListen(String queue,
                                     [String name = ""]) native "SubscriptionManager::subscriptionManagerSubscribeListen";
+   
+   /**
+    * Called from the native extension when a message arrives
+    */
+   void _listenerCallback(AmqpcMessage message){ 
+     
+     _onMessage.add(message);
+     
+   }
    
    /** Get a single message from a queue.
     * (Note: this currently uses a subscription per invocation and is
@@ -117,6 +134,11 @@ class AmqpcSubscriptionManager {
     * Stop delivery. Causes run() to return, or the thread started with start() to exit. 
     */
    void stop()  native "SubscriptionManager::subscriptionManagerStop";
+   
+   /** 
+    * Set the default settings for subscribe() calls.
+    */
+   void setDefaultSettings(AmqpcSubscriptionSettings settings) native "SubscriptionManager::subscriptionManagerSetDefaultSettings";
    
 }
   

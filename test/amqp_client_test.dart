@@ -620,8 +620,12 @@ main() {
     
     test("Construction ", () {
       
-      AmqpcSubscription mySubscription = new AmqpcSubscription();
-      expect(mySubscription, isNotNull);
+      void wrapper() {
+        
+        AmqpcSubscription mySubscription = new AmqpcSubscription();
+      }
+      
+      expect(wrapper, throws);
       
       
     });
@@ -638,9 +642,47 @@ main() {
       bool result = myConnection.openHost("localhost");
       expect(result, isTrue);
       expect(myConnection.isOpen(), isTrue);
-      AmqpcSession mySession = myConnection.newSession("SJH",0);
+      AmqpcSession mySession = myConnection.newSession("SJH1",0);
       AmqpcSubscriptionManager myManager = new AmqpcSubscriptionManager(mySession);
       expect(myManager, isNotNull);
+      
+      
+    });
+    
+    test("Subscribe Local", () {
+      
+      AmqpcConnection myConnection = new AmqpcConnection();
+      bool result = myConnection.openHost("localhost");
+      expect(result, isTrue);
+      expect(myConnection.isOpen(), isTrue);
+      AmqpcSession mySession = myConnection.newSession("SJH2",0);
+      mySession.queueDeclare(queue: "MyQueue");
+      AmqpcSubscriptionManager myManager = new AmqpcSubscriptionManager(mySession);
+      expect(myManager, isNotNull);
+      AmqpcLocalQueue localQueue = new AmqpcLocalQueue();
+      AmqpcSubscription mySubscription = myManager.subscribeLocal(localQueue,
+                                                                  "MyQueue", 
+                                                                  "SJH Subscription");
+      expect(mySubscription, isNotNull);
+      String queue = mySubscription.queue;
+      expect(queue, "MyQueue");
+      String name = mySubscription.name;
+      expect(name, "SJH Subscription");
+      
+      
+    });
+    
+    test("Set AutoStop", () {
+      
+      AmqpcConnection myConnection = new AmqpcConnection();
+      bool result = myConnection.openHost("localhost");
+      expect(result, isTrue);
+      expect(myConnection.isOpen(), isTrue);
+      AmqpcSession mySession = myConnection.newSession("SJH3",0);
+      mySession.queueDeclare(queue: "MyQueue");
+      AmqpcSubscriptionManager myManager = new AmqpcSubscriptionManager(mySession);
+      expect(myManager, isNotNull);
+      myManager.setAutoStop(false);
       
       
     });
