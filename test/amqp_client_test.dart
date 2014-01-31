@@ -687,6 +687,94 @@ main() {
       
     });
     
+    test("Set Default Settings", () {
+      
+      AmqpcConnection myConnection = new AmqpcConnection();
+      bool result = myConnection.openHost("localhost");
+      expect(result, isTrue);
+      expect(myConnection.isOpen(), isTrue);
+      AmqpcSession mySession = myConnection.newSession("SJH4",0);
+      mySession.queueDeclare(queue: "MyQueue");
+      AmqpcSubscriptionManager myManager = new AmqpcSubscriptionManager(mySession);
+      expect(myManager, isNotNull);
+      AmqpcLocalQueue localQueue = new AmqpcLocalQueue();
+      AmqpcSubscriptionSettings settings = new AmqpcSubscriptionSettings();
+      settings.acceptMode = 1;
+      settings.acquireMode = 1;
+      settings.autoAck = 0;
+      settings.completionMode = 1;
+      settings.exclusive = true;
+      myManager.setDefaultSettings(settings);
+      AmqpcSubscription mySubscription = myManager.subscribeLocal(localQueue,
+                                                                  "MyQueue", 
+                                                                  "SJH Subscription1");
+      AmqpcSubscriptionSettings defaultSettings = mySubscription.getSettings();
+      expect(defaultSettings.acceptMode, 1);
+      expect(defaultSettings.acquireMode, 1);
+      expect(defaultSettings.autoAck, 0);
+      expect(defaultSettings.completionMode, 1);
+      expect(defaultSettings.exclusive, isTrue);
+      
+      
+    });
+    
+    test("Accept Mode", () {
+      
+      AmqpcConnection myConnection = new AmqpcConnection();
+      bool result = myConnection.openHost("localhost");
+      expect(result, isTrue);
+      expect(myConnection.isOpen(), isTrue);
+      AmqpcSession mySession = myConnection.newSession("SJH4",0);
+      mySession.queueDeclare(queue: "MyQueue");
+      AmqpcSubscriptionManager myManager = new AmqpcSubscriptionManager(mySession);
+      expect(myManager, isNotNull);
+      AmqpcLocalQueue localQueue = new AmqpcLocalQueue();
+      myManager.setAcceptMode(1);
+      AmqpcSubscription mySubscription = myManager.subscribeLocal(localQueue,
+                                                                  "MyQueue", 
+                                                                  "SJH Subscription1");
+      AmqpcSubscriptionSettings defaultSettings = mySubscription.getSettings();
+      expect(defaultSettings.acceptMode, 1);
+      
+      
+    });
+    
+    test("Acquire Mode", () {
+      
+      AmqpcConnection myConnection = new AmqpcConnection();
+      bool result = myConnection.openHost("localhost");
+      expect(result, isTrue);
+      expect(myConnection.isOpen(), isTrue);
+      AmqpcSession mySession = myConnection.newSession("SJH5",0);
+      mySession.queueDeclare(queue: "MyQueue");
+      AmqpcSubscriptionManager myManager = new AmqpcSubscriptionManager(mySession);
+      expect(myManager, isNotNull);
+      AmqpcLocalQueue localQueue = new AmqpcLocalQueue();
+      myManager.setAcquireMode(1);
+      AmqpcSubscription mySubscription = myManager.subscribeLocal(localQueue,
+                                                                  "MyQueue", 
+                                                                  "SJH Subscription1");
+      AmqpcSubscriptionSettings defaultSettings = mySubscription.getSettings();
+      expect(defaultSettings.acquireMode, 1);
+      
+      
+    });
+    
+    test("Get Session", () {
+      
+      AmqpcConnection myConnection = new AmqpcConnection();
+      bool result = myConnection.openHost("localhost");
+      expect(result, isTrue);
+      expect(myConnection.isOpen(), isTrue);
+      AmqpcSession mySession = myConnection.newSession("SJH6",0);
+      mySession.queueDeclare(queue: "MyQueue");
+      AmqpcSubscriptionManager myManager = new AmqpcSubscriptionManager(mySession);
+      expect(myManager, isNotNull);
+      AmqpcSession myOtherSession = myManager.getSession();
+      expect(myOtherSession, isNotNull);
+      
+      
+    });
     
   });
   

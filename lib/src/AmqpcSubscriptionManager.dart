@@ -137,13 +137,17 @@ class AmqpcSubscriptionManager {
    
    /** 
     * Set the default settings for subscribe() calls.
+    * Note, takes effect on subsequent subscriptions
     */
    void setDefaultSettings(AmqpcSubscriptionSettings settings) native "SubscriptionManager::subscriptionManagerSetDefaultSettings";
    
    /** 
     * Get the default settings for subscribe() calls.
     */
-   AmqpcSubscriptionSettings getDefaultSettings() native "SubscriptionManager::subscriptionManagerGetDefaultSettings";
+   //AmqpcSubscriptionSettings getDefaultSettings() native "SubscriptionManager::subscriptionManagerGetDefaultSettings";
+   //TODO causes symbol lookup error in the native extension, removed for now
+   // use getSubscription to get a subscription if you don't already have one, followed by getSettings
+   // on the subscription object.
    
    /**
     * Set the default accept-mode for subscribe() calls. 
@@ -160,7 +164,7 @@ class AmqpcSubscriptionManager {
    /**
     * Get the session 
     */
-   AmqpcSession Session getSession() native "SubscriptionManager::subscriptionManagerGetSession";
+   AmqpcSession getSession() native "SubscriptionManager::subscriptionManagerGetSession";
    
    
 }
