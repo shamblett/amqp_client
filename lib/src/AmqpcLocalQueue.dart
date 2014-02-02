@@ -21,7 +21,6 @@ class AmqpcLocalQueue {
    * queue with a SubscriptionManager.
    *
    * LocalQueue is an alternative to implementing a MessageListener
-   * which are not used in this implementation
    */
   AmqpcLocalQueue() {
     
