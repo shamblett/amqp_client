@@ -33,7 +33,7 @@ class AmqpcSubscriptionManager {
    *  messages received are multiplexed into this single stream.
    *  To get the queue name use the getDestination() method of the message.
    */
-  get message  => _onMessage.stream;
+  Stream get messageEvent  => _onMessage.stream;
   
   /**
    * Constructor
@@ -80,8 +80,9 @@ class AmqpcSubscriptionManager {
    /**
     * Called from the native extension when a message arrives
     */
-   void _listenerCallback(AmqpcMessage message){ 
+   void listenerCallback(AmqpcMessage message){ 
      
+     stop();
      _onMessage.add(message);
      
    }
