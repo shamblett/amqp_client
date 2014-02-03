@@ -42,7 +42,23 @@ class AmqpcSubscriptionManager {
    */
   var listenerCallback;
   
- 
+  /**
+   * Optional message queue and control flag.
+   * 
+   * If useQueue is set to true the client can take messages off this queue.
+   * This allows the listener call back to batch process messages or allows
+   * this queue to be interrogated on a timed basis and incoming messages removed.
+   * 
+   * Note if this option is selected the client is responsible for stripping this queue
+   * 
+   */
+  ListQueue _messageQueue = new Queue<AmqpcMessage>();
+  ListQueue get messageQueue => _messageQueue;
+  bool _useQueue = false;
+  bool get useQueue => _useQueue;
+  set useQueue(bool state) => _useQueue = state;
+  
+  
   /**
    * Constructor
    */
@@ -90,9 +106,20 @@ class AmqpcSubscriptionManager {
     */
    void nativeListenerCallback(AmqpcMessage message){ 
      
-     listenerCallback(message, 
-                      this, 
-                      _session);
+     /**
+      * If we are using the queue add the message
+      */
+     if ( _useQueue ) _messageQueue.add(message);
+     
+     /**
+      *  Always call the listener 
+      */
+     if ( listenerCallback != null )
+     
+        listenerCallback(message, 
+                         this, 
+                         _session);
+        
      
    }
    

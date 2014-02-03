@@ -35,7 +35,7 @@ class AmqpcMessage {
   /**
    * Sequence Number
    */
-  int _sequnceNumber;
+  int _sequenceNumber;
   int get sequenceNumber => _getId();
   
   /**
@@ -123,5 +123,4 @@ class AmqpcMessage {
    */
   int _getId() native "Message::messageGetId";
   
- 
 }

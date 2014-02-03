@@ -10,28 +10,38 @@ void listener(m,t,s) {
     if ( messageCount == 0 ) {
       
       /* First message, check and send another */
+      AmqpcMessage msgIn = t.messageQueue.removeFirst();
+      expect(msgIn.sequenceNumber, 0);
+      expect(msgIn.data, "This is the body of the transfer test message" );
+      expect(m.sequenceNumber, 0);
       expect(m.data, "This is the body of the transfer test message" );
-      print("Message OK"); 
       String messageData = "This is the body of the transfer test message 2";
       AmqpcMessage msgOut1 = new AmqpcMessage(messageData, "MyTransferKey");
       s.messageTransfer(destination:"MyTransferExchange", content:msgOut1, acceptMode:1); 
       messageCount++;
+     
       
     } else if ( messageCount == 1) {
       
       /* Second message sent from test body below */
+      expect(m.sequenceNumber, 1);
       expect(m.data, "This is the body of the transfer test message 1" );
-      print("Message1 OK"); 
       messageCount++;
       
     } else {
       
       /* Third message sent from messageCount == 0 above */
+      expect(m.sequenceNumber, 2);
       expect(m.data, "This is the body of the transfer test message 2" );
-      print("Message2 OK"); 
       
-      /* We can stop delivery now in our case */
+      /* We can stop delivery thread now in our case */
       t.stop();
+      
+      /* Strip our message queue */
+      AmqpcMessage msgIn = t.messageQueue.removeFirst();
+      expect(msgIn.data, "This is the body of the transfer test message 1" );
+      msgIn = t.messageQueue.removeFirst();
+      expect(msgIn.data, "This is the body of the transfer test message 2" );
       
     }
 }
@@ -81,7 +91,10 @@ main() {
     /* Set our listener call back */
     myManager.listenerCallback = listener;
     
-    /* Start our recieve process on our current thread(isolate) */
+    /* Use the message queue */
+    myManager.useQueue = true;
+    
+    /* Start our delivery process on our current thread(isolate) */
     myManager.run();
     
     
