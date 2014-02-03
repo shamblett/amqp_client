@@ -3,20 +3,42 @@ library amqp_client_test;
 import '../lib/amqp_client.dart';
 import 'package:unittest/unittest.dart';  
 
+int messageCount = 0;
+
+void listener(m,t,s) {
+  
+    if ( messageCount == 0 ) {
+      
+      /* First message, check and send another */
+      expect(m.data, "This is the body of the transfer test message" );
+      print("Message OK"); 
+      String messageData = "This is the body of the transfer test message 2";
+      AmqpcMessage msgOut1 = new AmqpcMessage(messageData, "MyTransferKey");
+      s.messageTransfer(destination:"MyTransferExchange", content:msgOut1, acceptMode:1); 
+      messageCount++;
+      
+    } else if ( messageCount == 1) {
+      
+      /* Second message sent from test body below */
+      expect(m.data, "This is the body of the transfer test message 1" );
+      print("Message1 OK"); 
+      messageCount++;
+      
+    } else {
+      
+      /* Third message sent from messageCount == 0 above */
+      expect(m.data, "This is the body of the transfer test message 2" );
+      print("Message2 OK"); 
+      
+      /* We can stop delivery now in our case */
+      t.stop();
+      
+    }
+}
+
 main() {  
   
   test("Message Transfer Listener", () {
-
-    var listener = expectAsync1((AmqpcSubscriptionManager manager){
-           
-      manager.messageEvent.listen((e) {
-        
-        expect(e.data, "This is the body of the transfer test message" );
-        print("Message OK");
-        
-      });
-      
-    });
     
     /* Connect to the broker */
     AmqpcConnection myConnection = new AmqpcConnection();
@@ -46,16 +68,24 @@ main() {
     AmqpcSubscription mySubscription = myManager.subscribeListen("MyTransferQueue");
     expect(mySubscription, isNotNull);
     
-    /* Create and send a message to the exchange using the routing
+    /* Create and send two messages to the exchange using the routing
     * key we bound our local queue with.
     */ 
     String messageData = "This is the body of the transfer test message";
     AmqpcMessage msgOut = new AmqpcMessage(messageData, "MyTransferKey");
-    session.messageTransfer(destination:"MyTransferExchange", content:msgOut, acceptMode:1);    
+    session.messageTransfer(destination:"MyTransferExchange", content:msgOut, acceptMode:1);
+    String messageData1 = "This is the body of the transfer test message 1";
+    AmqpcMessage msgOut1 = new AmqpcMessage(messageData1, "MyTransferKey");
+    session.messageTransfer(destination:"MyTransferExchange", content:msgOut1, acceptMode:1);
+     
+    /* Set our listener call back */
+    myManager.listenerCallback = listener;
     
+    /* Start our recieve process on our current thread(isolate) */
     myManager.run();
-    listener(myManager);
     
+    
+       
   });
   
 }

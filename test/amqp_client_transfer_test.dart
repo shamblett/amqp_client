@@ -36,12 +36,18 @@ main() {
     String messageData = "This is the body of the transfer test message";
     AmqpcMessage msgOut = new AmqpcMessage(messageData, "MyTransferKey");
     session.messageTransfer(destination:"MyTransferExchange", content:msgOut, acceptMode:1);
-
+    String messageData1 = "This is the body of the transfer test message 1";
+    AmqpcMessage msgOut1 = new AmqpcMessage(messageData1, "MyTransferKey");
+    session.messageTransfer(destination:"MyTransferExchange", content:msgOut1, acceptMode:1);   
+    
     /*  Using the SubscriptionManager, get the message from the queue. */
     AmqpcSubscriptionManager subs = new AmqpcSubscriptionManager(session);
     AmqpcMessage msgIn = subs.get("MyTransferQueue");
     expect(msgIn.data, msgOut.data);
     print(msgOut.data);
+    msgIn = subs.get("MyTransferQueue");
+    expect(msgIn.data, msgOut1.data);
+    print(msgOut1.data);
     
     /* Close the connection */
     myConnection.close();

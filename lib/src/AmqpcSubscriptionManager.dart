@@ -6,8 +6,8 @@
  * 
  * Qpid Subscription Manager class.
  * 
- * Note that message listerners are not supported in this implementation.
- * use remote or local queue management instead.
+ * Direct transfers, local queues and listener interfaces are supported in this class.
+ * 
  */
 
 part of amqp_client;
@@ -27,14 +27,22 @@ class AmqpcSubscriptionManager {
   AmqpcSession _session;
   AmqpcSession get session => _session;
   
-  final _onMessage = new StreamController<AmqpcMessage>();
   /**
-   *  Message stream, note that although many queues can be listened to(subscribeListen) all
-   *  messages received are multiplexed into this single stream.
-   *  To get the queue name use the getDestination() method of the message.
+   * Call back for the subscribeListen method.
+   * 
+   * The signature is (AmqpcMessage message,
+   *                   AmqpcSubscriptionManager this,
+   *                   AmqpcSession this.session);
+   *                   
+   *  This should allow the listener callback the leeway to perform
+   *  most control functions.
+   *  
+   *  Note that messages for all listened to queues are multiplexed into this
+   *  one listener.
    */
-  Stream get messageEvent  => _onMessage.stream;
+  var listenerCallback;
   
+ 
   /**
    * Constructor
    */
@@ -80,10 +88,11 @@ class AmqpcSubscriptionManager {
    /**
     * Called from the native extension when a message arrives
     */
-   void listenerCallback(AmqpcMessage message){ 
+   void nativeListenerCallback(AmqpcMessage message){ 
      
-     stop();
-     _onMessage.add(message);
+     listenerCallback(message, 
+                      this, 
+                      _session);
      
    }
    
@@ -114,17 +123,6 @@ class AmqpcSubscriptionManager {
     */
    void run() native "SubscriptionManager::subscriptionManagerRun";
 
-   /** Start a new thread to deliver messages.
-    * Only one thread may be running in a SubscriptionManager at a time.
-    * @see start
-    */
-   void start()  native "SubscriptionManager::subscriptionManagerStart";
-
-   /**
-    * Wait for the thread started by a call to start() to complete.
-    */
-   void wait()  native "SubscriptionManager::subscriptionManagerWait";
-
    /** If set true, run() will stop when all subscriptions
     * are cancelled. If false, run will only stop when stop()
     * is called. True by default.
@@ -132,7 +130,7 @@ class AmqpcSubscriptionManager {
    void setAutoStop([bool set = true])  native "SubscriptionManager::subscriptionManagerSetAutoStop";
 
    /** 
-    * Stop delivery. Causes run() to return, or the thread started with start() to exit. 
+    * Stop delivery. Causes run() to return.
     */
    void stop()  native "SubscriptionManager::subscriptionManagerStop";
    

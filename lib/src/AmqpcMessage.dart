@@ -123,5 +123,5 @@ class AmqpcMessage {
    */
   int _getId() native "Message::messageGetId";
   
-  
+ 
 }
