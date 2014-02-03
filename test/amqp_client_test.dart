@@ -724,7 +724,7 @@ main() {
       bool result = myConnection.openHost("localhost");
       expect(result, isTrue);
       expect(myConnection.isOpen(), isTrue);
-      AmqpcSession mySession = myConnection.newSession("SJH4",0);
+      AmqpcSession mySession = myConnection.newSession("SJH5",0);
       mySession.queueDeclare(queue: "MyQueue");
       AmqpcSubscriptionManager myManager = new AmqpcSubscriptionManager(mySession);
       expect(myManager, isNotNull);
@@ -745,7 +745,7 @@ main() {
       bool result = myConnection.openHost("localhost");
       expect(result, isTrue);
       expect(myConnection.isOpen(), isTrue);
-      AmqpcSession mySession = myConnection.newSession("SJH5",0);
+      AmqpcSession mySession = myConnection.newSession("SJH6",0);
       mySession.queueDeclare(queue: "MyQueue");
       AmqpcSubscriptionManager myManager = new AmqpcSubscriptionManager(mySession);
       expect(myManager, isNotNull);
@@ -766,7 +766,7 @@ main() {
       bool result = myConnection.openHost("localhost");
       expect(result, isTrue);
       expect(myConnection.isOpen(), isTrue);
-      AmqpcSession mySession = myConnection.newSession("SJH6",0);
+      AmqpcSession mySession = myConnection.newSession("SJH7",0);
       mySession.queueDeclare(queue: "MyQueue");
       AmqpcSubscriptionManager myManager = new AmqpcSubscriptionManager(mySession);
       expect(myManager, isNotNull);
