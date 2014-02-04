@@ -1,5 +1,5 @@
 /*
- * Package : amqp_client
+ * Package : amqpc_client
  * Author : S. Hamblett <steve.hamblett@linux.com>
  * Date   : 16/01/2014
  * Copyright :  S.Hamblett@OSCF

@@ -5,10 +5,10 @@ Please read the Install document before testing this package.
 
 The test scripts are to be found in the 'test' folder which contains the following :-
 
->amqpc_client_test.dart - standard unit test file
->amqpc_client_transfer_test - direct synchronous message transfer test
->amqpc_client_localqueue_test - as above but using local queues
->amqpc_client_listener_test - message reception using an asynchronous listener
+>amqp_client_test.dart - standard unit test file
+>amqp_client_transfer_test - direct synchronous message transfer test
+>amqp_client_localqueue_test - as above but using local queues
+>amqp_client_listener_test - message reception using an asynchronous listener
 
 These tests can be run in any order, however the standard unit tests should be run to first
 to prove the AMQPC environment on the target box is working.

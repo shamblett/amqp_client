@@ -45,13 +45,10 @@ main() {
     session.messageTransfer(destination:"MyTransferExchange", content:msgOut, acceptMode:1);
 
     /* Get the message from the local queue. */ 
-    int size = localQueue.size();
-    expect(size, 1);
-    if ( size > 0 ) {
-      AmqpcMessage msgIn = localQueue.get();
-      expect(msgIn.data, msgOut.data);
-      print(msgOut.data);
-    }
+    AmqpcMessage msgIn = localQueue.get();
+    expect(msgIn.data, msgOut.data);
+    print(msgOut.data);
+   
     
     /* Close the connection */
     myConnection.close();
