@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="90">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="HeaderFiles"
+                   displayName="Header Files"
+                   projectFiles="true">
+      <itemPath>ExtAll.h</itemPath>
+      <itemPath>ExtConnection.h</itemPath>
+      <itemPath>ExtLocalQueue.h</itemPath>
+      <itemPath>ExtMessage.h</itemPath>
+      <itemPath>ExtMessageListener.h</itemPath>
+      <itemPath>ExtSession.h</itemPath>
+      <itemPath>ExtSubscription.h</itemPath>
+      <itemPath>ExtSubscriptionManager.h</itemPath>
+      <itemPath>ExtUuid.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="ResourceFiles"
+                   displayName="Resource Files"
+                   projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="SourceFiles"
+                   displayName="Source Files"
+                   projectFiles="true">
+      <itemPath>ExtAll.cpp</itemPath>
+      <itemPath>ExtConnection.cpp</itemPath>
+      <itemPath>ExtLocalQueue.cpp</itemPath>
+      <itemPath>ExtMessage.cpp</itemPath>
+      <itemPath>ExtMessageListener.cpp</itemPath>
+      <itemPath>ExtSession.cpp</itemPath>
+      <itemPath>ExtSubscription.cpp</itemPath>
+      <itemPath>ExtSubscriptionManager.cpp</itemPath>
+      <itemPath>ExtUuid.cpp</itemPath>
+      <itemPath>amqp_extension.cpp</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Debug" type="2">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <ccTool>
+          <incDir>
+            <pElem>/usr/include/qpid/client</pElem>
+            <pElem>../../Development/google/dart/dart/dart-sdk</pElem>
+          </incDir>
+        </ccTool>
+        <linkerTool>
+          <linkerAddLib>
+            <pElem>/usr/lib</pElem>
+          </linkerAddLib>
+          <linkerLibItems>
+            <linkerLibLibItem>qpidclient</linkerLibLibItem>
+          </linkerLibItems>
+        </linkerTool>
+      </compileType>
+      <packaging>
+        <packType>RPM</packType>
+        <packFileList>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}lib/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="644"
+                            owner="root"
+                            group="bin"/>
+        </packFileList>
+        <packInfoList>
+          <packInfoListElem name="Summary" value="Sumary..." mandatory="true"/>
+          <packInfoListElem name="Name" value="libamqpextension.so" mandatory="true"/>
+          <packInfoListElem name="Version" value="1.0" mandatory="true"/>
+          <packInfoListElem name="Release" value="1" mandatory="true"/>
+          <packInfoListElem name="Group" value="Applications/System" mandatory="true"/>
+          <packInfoListElem name="License" value="BSD-type" mandatory="true"/>
+          <packInfoListElem name="%description" value="Description..." mandatory="true"/>
+        </packInfoList>
+      </packaging>
+      <item path="ExtAll.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ExtAll.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ExtConnection.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ExtConnection.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ExtLocalQueue.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ExtLocalQueue.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ExtMessage.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ExtMessage.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ExtMessageListener.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ExtMessageListener.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ExtSession.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ExtSession.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ExtSubscription.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ExtSubscription.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ExtSubscriptionManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ExtSubscriptionManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ExtUuid.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ExtUuid.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="amqp_extension.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+    </conf>
+    <conf name="Release" type="2">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <developmentMode>5</developmentMode>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+        </ccTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <asmTool>
+          <developmentMode>5</developmentMode>
+        </asmTool>
+      </compileType>
+      <item path="ExtAll.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ExtAll.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ExtConnection.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ExtConnection.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ExtLocalQueue.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ExtLocalQueue.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ExtMessage.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ExtMessage.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ExtMessageListener.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ExtMessageListener.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ExtSession.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ExtSession.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ExtSubscription.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ExtSubscription.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ExtSubscriptionManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ExtSubscriptionManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ExtUuid.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ExtUuid.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="amqp_extension.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>
