@@ -1,7 +1,7 @@
-amqpc_client
+amqp_client
 ===
 
-The amqpc_client Dart package allows server side Dart implementations to act as an
+The amqp_client Dart package allows server side Dart implementations to act as an
 AMQP messaging client. 
 
 The package comprises of a Dart library and native extension providing the following
@@ -11,7 +11,7 @@ AMQP functions :-
   - Synchronous local queue message transfer
   - Asynchronous message reception using a listener interface
 
-The native client extension wraps the Apache [QPID] [1]  messaging client libraries giving a rich AMQPC client interface.
+The native client extension wraps the Apache [QPID] [1]  messaging client libraries giving a rich AMQP client interface.
 
 Please refer to the Install documents for building the native client and the Test document for running the unit test suite.
 
